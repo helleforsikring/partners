@@ -1,4 +1,4 @@
-import helleLogoPink from "@/assets/helle-logo-pink.svg";
+import helleLogoPink from "@/assets/helle-lockup-pink.svg";
 import { T, useText } from "@/lib/page-context";
 import { HELLE } from "./helle";
 
@@ -24,13 +24,14 @@ const COLS: { title: string; links: [string, string][] }[] = [
       ["Klager", "/kontakt#klager"],
     ],
   },
-  { title: "Helle", links: [["Om Helle", "/om-helle"], ["Bliv partner", "/bliv-partner"]] },
+  { title: "Helle", links: [["Om Helle", "/om-helle"]] },
   {
     title: "Dokumenter",
     links: [
       ["Betingelser og vilkår", "/betingelser-og-vilkaar"],
       ["Persondatapolitik", "/persondatapolitik"],
       ["Cookies", "/cookies"],
+      ["Cookie-indstillinger", "/cookies#indstillinger"],
     ],
   },
 ];
@@ -40,27 +41,24 @@ export function Footer() {
   const email = useText("footer.email");
   return (
     <footer className="bg-helle-blomme py-16 text-white md:py-20">
-      <div className="mx-auto w-full max-w-[77.5rem] px-5 md:px-10">
-        <div className="grid gap-12 md:grid-cols-[1.3fr_1.5fr_1fr_1fr]">
-          <div>
-            <img src={helleLogoPink} alt="Helle" className="mb-6 h-14 w-auto md:h-16" />
-            <p className="max-w-xs text-[15px] leading-[1.375rem] text-white/90"><T k="footer.tagline" /></p>
+      <div className="mx-auto w-full max-w-[77.5rem] px-5 md:px-10 xl:px-0">
+        <div className="grid gap-12 lg:grid-cols-[340px_1fr] lg:gap-0">
+          <div className="lg:pr-10">
+            <img src={helleLogoPink} alt="Helle forsikring" className="h-[95px] w-auto" />
+            <p className="mt-6 max-w-[300px] text-[15px] leading-[1.375rem] text-white/85"><T k="footer.tagline" /></p>
             <div className="mt-6 flex gap-4 text-[15px]">
-              <a href="https://www.instagram.com/helleforsikring" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-helle-pink">Instagram</a>
-              <a href="https://www.linkedin.com/company/lea-forsikring" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-helle-pink">LinkedIn</a>
+              <a href="https://www.instagram.com/helleforsikring" target="_blank" rel="noopener noreferrer" className="text-helle-pink underline underline-offset-4 hover:no-underline">Instagram</a>
+              <a href="https://www.linkedin.com/company/lea-forsikring" target="_blank" rel="noopener noreferrer" className="text-helle-pink underline underline-offset-4 hover:no-underline">LinkedIn</a>
             </div>
           </div>
-          {[COLS[0], COLS[1], COLS[2]].map((col, i) => (
-            <div key={col.title}>
-              <FooterCol col={col} />
-              {i === 0 && <div className="mt-8"><FooterCol col={COLS[3]} /></div>}
-            </div>
-          ))}
+          <div className="flex flex-wrap gap-x-14 gap-y-10">
+            {COLS.map((col) => <div key={col.title}><FooterCol col={col} /></div>)}
+          </div>
         </div>
-        <div className="mt-14 border-t border-white/20 pt-8 text-[15px] leading-[1.375rem] text-white/80">
+        <div className="mt-16 border-t border-white pt-16 text-[15px] leading-[1.375rem] text-white/75">
           <p><T k="footer.legal" /></p>
-          <p className="mt-1">
-            <a href={`tel:${phone.replace(/\s+/g, "")}`} className="hover:text-white">{phone}</a>
+          <p>
+            <a href={`tel:${phone.replace(/\s+/g, "")}`} className="hover:text-white">{phone.replace(/^\+45\s*/, "")}</a>
             {" · "}
             <a href={`mailto:${email}`} className="hover:text-white">{email}</a>
             {" · "}© Helle Forsikringsformidling A/S
@@ -75,7 +73,7 @@ function FooterCol({ col }: { col: (typeof COLS)[number] }) {
   return (
     <>
       <h4 className="mb-4 text-[13px] font-medium uppercase tracking-[0.06em] text-helle-pink">{col.title}</h4>
-      <ul className="space-y-2.5 text-[15px]">
+      <ul className="space-y-3 text-[15px] leading-[1.375rem]">
         {col.links.map(([label, href]) => (
           <li key={href}>
             <a href={`${HELLE}${href}`} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">{label}</a>
