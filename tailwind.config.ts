@@ -13,7 +13,18 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        helle: ['"DM Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
+      },
       colors: {
+        helle: {
+          blomme: "#321134",
+          pink: "#F4B0F9",
+          creme: "#F5F3F0",
+          daempet: "#6E5A70",
+          lavendel: "#F3E8F5",
+          linje: "#E6DFE7",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

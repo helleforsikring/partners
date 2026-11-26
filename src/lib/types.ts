@@ -29,8 +29,14 @@ export type LandingPage = {
 export type ContentRow = { slug: string; key: string; value: string };
 
 export const CONTENT_DEFAULTS: Record<string, string> = {
+  // Topbanner
+  "banner.text": "LEA hedder nu Helle.",
+  "banner.linkText": "Læs mere",
+  "banner.url": "https://www.helleforsikring.dk/lea-hedder-nu-helle",
+
   // Header
-  "header.cta": "Læs mere om partnerskabet",
+  "header.mitHelle": "Mit Helle",
+  "header.beregn": "Beregn din pris",
   "header.nav.forsikringer": "Forsikringer",
   "header.nav.omLea": "Om Helle",
   "header.nav.kontakt": "Kontakt",
@@ -39,26 +45,18 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "hero.titleStart": "Forsikringsfordele,",
   "hero.titleEnd": "til dit lejeliv",
   "hero.subtitle": "",
+  "hero.image": "https://cdn.sanity.io/images/s87ydv4j/production/1047c4cb0165053b4f9e454a44121925e558d0b2-1333x2000.jpg?w=1000&q=80&auto=format",
+  "hero.imageAlt": "Et smilende menneske i en rød sofa med et æble i hånden",
+  "usp.1": "Prisen med det samme",
+  "usp.2": "Alt klares digitalt",
+  "usp.3": "Ærlig rådgivning",
 
   // Selector
-  "selector.label": "Tegn din forsikring hos Helle",
+  "selector.label": "Beregn din pris",
   "selector.placeholder": "Vælg forsikring",
-  "selector.searchLabel": "Vælg forsikring",
-  "selector.cta": "Beregn pris",
-  "selector.indbo.label": "Søg din adresse",
-  "selector.indbo.placeholder": "F.eks. Strandgade 12, 1401 København K",
-  "selector.husleje.label": "Månedlig husleje",
-  "selector.husleje.placeholder": "F.eks. 8500",
-  "selector.ulykke.label": "Vælg din beskæftigelse",
-  "selector.ulykke.placeholder": "Vælg beskæftigelse",
-  "product.indbo": "Indboforsikring",
-  "product.husleje": "Huslejeforsikring",
-  "product.ulykke": "Ulykkesforsikring",
 
   // Products section
-  "products.badge": "Forsikringer",
   "products.title": "Tre forsikringer til dit lejeliv",
-  "products.subtitle": "Vælg de produkter, der passer til netop din situation — eller kombiner dem for fuld tryghed.",
   "products.indbo.title": "Indboforsikring",
   "products.indbo.description": "Dækker dine personlige ejendele i hjemmet — fra møbler og elektronik til tøj og cykler. Beskyttelse mod tyveri, brand og vandskade.",
   "products.husleje.title": "Huslejeforsikring",
@@ -66,6 +64,13 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "products.ulykke.title": "Ulykkesforsikring",
   "products.ulykke.description": "Beskytter dig økonomisk ved ulykker i hverdagen — uanset om de sker hjemme, på arbejde eller i fritiden. Erstatning ved varigt mén.",
   "products.cardCta": "Læs mere",
+  "products.chip": "Køb online",
+  "products.indbo.image": "https://cdn.sanity.io/images/s87ydv4j/production/f27e0e912479e472fb3ae0d2cd87acf8ae2e6238-1344x896.jpg?w=700&h=420&fit=crop&q=80&auto=format",
+  "products.husleje.image": "https://cdn.sanity.io/images/s87ydv4j/production/5c18b7ddfbef26172d210c833521237eb50c2a4b-1333x922.jpg?w=700&h=420&fit=crop&q=80&auto=format",
+  "products.ulykke.image": "https://cdn.sanity.io/images/s87ydv4j/production/dad925df8248baeb95436096468d439b3eb4a20e-1024x1024.jpg?w=700&h=420&fit=crop&q=80&auto=format",
+  "products.indbo.discount": "",
+  "products.husleje.discount": "",
+  "products.ulykke.discount": "",
   "products.indbo.cardCtaUrl": "https://www.helleforsikring.dk/forsikring/indbo",
   "products.husleje.cardCtaUrl": "https://www.helleforsikring.dk/forsikring/husleje",
   "products.ulykke.cardCtaUrl": "https://www.helleforsikring.dk/forsikring/ulykke",
@@ -76,17 +81,18 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "trust.p2": "",
   "trust.p3": "",
   "trust.p4": "",
-  "trust.cta": "Læs mere om samarbejdet",
+  "trust.eyebrow": "Samarbejdet",
+  "trust.cta": "Se alle forsikringer",
+
+  // Om Helle
+  "about.eyebrow": "Om Helle",
+  "about.title": "Tryghed starter med klar besked.",
+  "about.text": "Helle er forsikringsformidler. Vi hjælper dig med at finde din forsikring, og det er forsikringsselskaberne bag, der står for dækningen. Du skal nemt kunne se, hvad forsikringen dækker, og hvilke begrænsninger der gælder.",
+  "about.cta": "Læs om Helle og vores forsikringspartnere",
 
   // Footer
   "footer.tagline": "Helle er forsikringsformidler. Vi formidler forsikringer fra de forsikringsselskaber, vi samarbejder med, og gør det nemt at finde, forstå og købe den rette.",
-  "footer.shortcuts": "Genveje",
-  "footer.persondata": "Persondatapolitik",
-  "footer.follow": "Følg os",
-  "footer.contact": "Kontakt",
-  "footer.address1": "Strandgade 12",
-  "footer.address2": "1401 København K",
   "footer.phone": "+45 70 80 74 60",
   "footer.email": "info@helleforsikring.dk",
-  "footer.legal": "Helle Forsikringsformidling A/S · CVR 45418669 · Forsikringsformidler registreret hos Finanstilsynet, FT-nr. 48105 ·",
+  "footer.legal": "Helle Forsikringsformidling A/S · Strandgade 12, 1401 København K · CVR 45418669 · Forsikringsformidler registreret hos Finanstilsynet, FT-nr. 48105",
 };
