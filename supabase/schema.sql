@@ -1,4 +1,4 @@
--- Samlet skema for LEA Landingpages (svarer til de 8 Lovable-migrationer + drizzle-politikken)
+-- Samlet skema for Helle Partnersider (svarer til de 8 Lovable-migrationer + drizzle-politikken)
 -- Køres én gang i en ny, tom Supabase.
 
 create table public.landing_pages (
@@ -9,16 +9,16 @@ create table public.landing_pages (
   hero_highlight text not null default 'skræddersyet',
   accent_color text not null default '#3994BA',
   accent_hover_color text not null default '#2d7a99',
-  badge_bg_color text not null default '#341132',
+  badge_bg_color text not null default '#321134',
   logo_url text,
   meta_title text not null default '',
   meta_description text not null default '',
   is_visible boolean not null default true,
   deleted_at timestamptz,
   products jsonb not null default '[
-  {"key":"indbo","label":"Indboforsikring","calculator_url":"https://demo.leaforsikring.dk/forsikring/indbo/beregner","input_type":"text","input_label":"Søg din adresse","input_placeholder":"F.eks. Strandgade 12, 1401 København K","input_suffix":"","options":[]},
-  {"key":"husleje","label":"Huslejeforsikring","calculator_url":"https://demo.leaforsikring.dk/forsikring/husleje/beregner","input_type":"number","input_label":"Månedlig husleje","input_placeholder":"F.eks. 8500","input_suffix":"kr./md.","options":[]},
-  {"key":"ulykke","label":"Ulykkesforsikring","calculator_url":"https://demo.leaforsikring.dk/forsikring/ulykke/beregner","input_type":"select","input_label":"Vælg din beskæftigelse","input_placeholder":"Vælg beskæftigelse","input_suffix":"","options":["Lønmodtager","Selvstændig","Studerende","Pensionist","Arbejdssøgende","Andet"]}
+  {"key":"indbo","label":"Indboforsikring","calculator_url":"https://www.helleforsikring.dk/forsikring/indbo/beregn","input_type":"text","input_label":"Søg din adresse","input_placeholder":"F.eks. Strandgade 12, 1401 København K","input_suffix":"","options":[]},
+  {"key":"husleje","label":"Huslejeforsikring","calculator_url":"https://www.helleforsikring.dk/forsikring/husleje/beregn","input_type":"number","input_label":"Månedlig husleje","input_placeholder":"F.eks. 8500","input_suffix":"kr./md.","options":[]},
+  {"key":"ulykke","label":"Ulykkesforsikring","calculator_url":"https://www.helleforsikring.dk/forsikring/ulykke/beregn","input_type":"select","input_label":"Vælg din beskæftigelse","input_placeholder":"Vælg beskæftigelse","input_suffix":"","options":["Lønmodtager","Selvstændig","Studerende","Pensionist","Arbejdssøgende","Andet"]}
 ]'::jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()

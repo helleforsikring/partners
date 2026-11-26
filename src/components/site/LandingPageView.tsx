@@ -216,7 +216,7 @@ function Products() {
 
 function ProductCard({ titleKey, descKey, urlKey }: { titleKey: string; descKey: string; urlKey: string }) {
   const { page } = usePage();
-  const url = useText(urlKey) || "https://leaforsikring.dk/forsikringer";
+  const url = useText(urlKey) || "https://www.helleforsikring.dk/forsikring";
   return (
     <article className="flex flex-col rounded-3xl bg-card p-7 md:p-8 shadow-[var(--shadow-card)] border border-border">
       <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-3"><T k={titleKey} /></h3>
@@ -248,7 +248,7 @@ function TrustCta() {
             <p><T k="trust.p4" /></p>
           </div>
           <div className="mt-10 flex justify-center">
-            <a href="https://leaforsikring.dk/forsikringer" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.helleforsikring.dk/forsikring" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-background px-7 py-4 text-base font-medium text-foreground shadow-sm transition-all hover:opacity-90">
               <T k="trust.cta" />
               <ArrowRight className="h-5 w-5" />

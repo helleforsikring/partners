@@ -2,8 +2,8 @@ import { describe, expect, it, vi } from "vitest";
 import { directProductDestination, openProductDestination } from "@/lib/product-selection";
 
 describe("GoBolig product selection", () => {
-  it("sends contents insurance directly to the LEA price calculator", () => {
-    expect(directProductDestination("gobolig", "indbo")).toBe("https://leaforsikring.dk/forsikring/indbo/beregn#beregner");
+  it("sends contents insurance directly to the Helle price calculator", () => {
+    expect(directProductDestination("gobolig", "indbo")).toBe("https://www.helleforsikring.dk/forsikring/indbo/beregn");
   });
   it("keeps the existing input step for other insurance products", () => {
     expect(directProductDestination("gobolig", "husleje")).toBeNull();
@@ -15,9 +15,9 @@ describe("GoBolig product selection", () => {
   it("opens the calculator outside the embedded preview without opener access", () => {
     const open = vi.spyOn(window, "open").mockReturnValue(null);
     try {
-      openProductDestination("https://leaforsikring.dk/forsikring/indbo/beregn#beregner");
+      openProductDestination("https://www.helleforsikring.dk/forsikring/indbo/beregn");
       expect(open).toHaveBeenCalledWith(
-        "https://leaforsikring.dk/forsikring/indbo/beregn#beregner",
+        "https://www.helleforsikring.dk/forsikring/indbo/beregn",
         "_blank",
         "noopener,noreferrer",
       );

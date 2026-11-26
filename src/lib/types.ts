@@ -32,7 +32,7 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   // Header
   "header.cta": "Læs mere om partnerskabet",
   "header.nav.forsikringer": "Forsikringer",
-  "header.nav.omLea": "Om LEA",
+  "header.nav.omLea": "Om Helle",
   "header.nav.kontakt": "Kontakt",
 
   // Hero
@@ -41,7 +41,7 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "hero.subtitle": "",
 
   // Selector
-  "selector.label": "Tegn din forsikring hos LEA",
+  "selector.label": "Tegn din forsikring hos Helle",
   "selector.placeholder": "Vælg forsikring",
   "selector.searchLabel": "Vælg forsikring",
   "selector.cta": "Beregn pris",
@@ -66,9 +66,9 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "products.ulykke.title": "Ulykkesforsikring",
   "products.ulykke.description": "Beskytter dig økonomisk ved ulykker i hverdagen — uanset om de sker hjemme, på arbejde eller i fritiden. Erstatning ved varigt mén.",
   "products.cardCta": "Læs mere",
-  "products.indbo.cardCtaUrl": "https://leaforsikring.dk/forsikringer",
-  "products.husleje.cardCtaUrl": "https://leaforsikring.dk/forsikringer",
-  "products.ulykke.cardCtaUrl": "https://leaforsikring.dk/forsikringer",
+  "products.indbo.cardCtaUrl": "https://www.helleforsikring.dk/forsikring/indbo",
+  "products.husleje.cardCtaUrl": "https://www.helleforsikring.dk/forsikring/husleje",
+  "products.ulykke.cardCtaUrl": "https://www.helleforsikring.dk/forsikring/ulykke",
 
   // Trust
   "trust.title": "",
@@ -79,7 +79,7 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "trust.cta": "Læs mere om samarbejdet",
 
   // Footer
-  "footer.tagline": "L står for lejere. For LEA er nemlig bygget til alle os, der lejer. I LEA er alle de forsikringsløsninger, som giver mening i et lejeliv, samlet ét sted.",
+  "footer.tagline": "Helle er forsikringsformidler. Vi formidler forsikringer fra de forsikringsselskaber, vi samarbejder med, og gør det nemt at finde, forstå og købe den rette.",
   "footer.shortcuts": "Genveje",
   "footer.persondata": "Persondatapolitik",
   "footer.follow": "Følg os",
@@ -87,6 +87,6 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "footer.address1": "Strandgade 12",
   "footer.address2": "1401 København K",
   "footer.phone": "+45 70 80 74 60",
-  "footer.email": "info@leaforsikring.dk",
-  "footer.legal": "CVR-nummer: 45418669 · © All Rights Reserved Lea",
+  "footer.email": "info@helleforsikring.dk",
+  "footer.legal": "Helle Forsikringsformidling A/S · CVR 45418669 · Forsikringsformidler registreret hos Finanstilsynet, FT-nr. 48105 ·",
 };

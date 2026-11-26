@@ -1,7 +1,7 @@
 // Partner-specific direct destinations bypass the selector's input step.
 export function directProductDestination(slug: string, productKey: string): string | null {
   return slug === "gobolig" && productKey === "indbo"
-    ? "https://leaforsikring.dk/forsikring/indbo/beregn#beregner"
+    ? "https://www.helleforsikring.dk/forsikring/indbo/beregn"
     : null;
 }
 

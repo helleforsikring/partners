@@ -1,4 +1,4 @@
-# LEA Landingpages
+# Helle Partnersider
 
 Co-brandede landingssider for partnere (udlejere/administratorer) med admin-editor.
 

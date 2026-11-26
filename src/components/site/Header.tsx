@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import leaLogo from "@/assets/lea-logo.png";
+import helleLogo from "@/assets/helle-logo-blomme.svg";
+import { Link } from "react-router-dom";
 import { T, usePage } from "@/lib/page-context";
 
 const NAV = [
-  { key: "header.nav.forsikringer", href: "https://leaforsikring.dk/forsikringer" },
-  { key: "header.nav.omLea", href: "https://leaforsikring.dk/om-lea" },
-  { key: "header.nav.kontakt", href: "https://leaforsikring.dk/kontakt" },
+  { key: "header.nav.forsikringer", href: "https://www.helleforsikring.dk/forsikring" },
+  { key: "header.nav.omLea", href: "https://www.helleforsikring.dk/om-helle" },
+  { key: "header.nav.kontakt", href: "https://www.helleforsikring.dk/kontakt" },
 ];
 
 export function Header() {
@@ -19,13 +20,13 @@ export function Header() {
     <div className="px-4 pt-4">
       <header className="mx-auto w-full max-w-[1400px] rounded-3xl bg-card px-6 py-4 shadow-[var(--shadow-soft)]">
         <div className="flex items-center justify-between">
-          <a href={`/p/${page.slug}`} className="flex items-center gap-3" aria-label={`${page.name} × LEA — forside`}>
+          <Link to={`/p/${page.slug}`} className="flex items-center gap-3" aria-label={`${page.name} × Helle — forside`}>
             {page.logo_url && (
               <img src={page.logo_url} alt={page.name} className="h-9 w-auto md:h-10" />
             )}
             <X className="h-3.5 w-3.5 text-muted-foreground/70" aria-hidden="true" />
-            <img src={leaLogo} alt="LEA" className="h-9 w-auto md:h-10" />
-          </a>
+            <img src={helleLogo} alt="Helle" className="h-8 w-auto md:h-9" />
+          </Link>
 
           <div className="hidden items-center gap-8 md:flex">
             <nav className="flex items-center gap-8">
@@ -37,7 +38,7 @@ export function Header() {
                 </a>
               ))}
             </nav>
-            <a href="https://leaforsikring.dk/bliv-partner" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.helleforsikring.dk/bliv-partner" target="_blank" rel="noopener noreferrer"
               className="inline-flex rounded-full px-6 py-3 text-[15px] font-medium text-white transition-colors"
               style={{ backgroundColor: accent }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hover)}
@@ -61,7 +62,7 @@ export function Header() {
                 <T k={n.key} />
               </a>
             ))}
-            <a href="https://leaforsikring.dk/bliv-partner" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.helleforsikring.dk/bliv-partner" target="_blank" rel="noopener noreferrer"
               className="rounded-full px-5 py-2.5 text-center text-sm font-medium text-white"
               style={{ backgroundColor: accent }}>
               <T k="header.cta" />

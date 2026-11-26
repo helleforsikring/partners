@@ -1,4 +1,4 @@
-import leaLogoWhite from "@/assets/lea-logo-white.png";
+import helleLogoWhite from "@/assets/helle-logo-hvid.svg";
 import { T, useText, usePage } from "@/lib/page-context";
 
 export function Footer() {
@@ -11,20 +11,20 @@ export function Footer() {
         style={{ backgroundColor: page.accent_color }}>
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <img src={leaLogoWhite} alt="Lea" className="mb-5 h-10 w-auto" />
+            <img src={helleLogoWhite} alt="Helle" className="mb-5 h-10 w-auto" />
             <p className="max-w-sm text-sm leading-relaxed text-white/80"><T k="footer.tagline" /></p>
           </div>
           <div>
             <h4 className="mb-4 text-sm font-semibold"><T k="footer.shortcuts" /></h4>
             <ul className="space-y-2 text-sm text-white/80">
-              <li><a href="https://leaforsikring.dk/persondatapolitik" className="hover:text-white"><T k="footer.persondata" /></a></li>
+              <li><a href="https://www.helleforsikring.dk/persondatapolitik" className="hover:text-white"><T k="footer.persondata" /></a></li>
             </ul>
           </div>
           <div>
             <h4 className="mb-4 text-sm font-semibold"><T k="footer.follow" /></h4>
             <ul className="space-y-2 text-sm text-white/80">
-              <li><a href="https://www.instagram.com/leaforsikring" className="hover:text-white">Instagram</a></li>
-              <li><a href="https://www.linkedin.com/company/leaforsikring" className="hover:text-white">LinkedIn</a></li>
+              <li><a href="https://www.instagram.com/helleforsikring" className="hover:text-white">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/lea-forsikring" className="hover:text-white">LinkedIn</a></li>
             </ul>
           </div>
           <div>

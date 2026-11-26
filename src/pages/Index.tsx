@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Loader2, Plus, Settings } from "lucide-react";
 import { fetchPages } from "@/lib/data";
 import type { LandingPage } from "@/lib/types";
-import leaLogo from "@/assets/lea-logo.png";
+import helleLogo from "@/assets/helle-logo-blomme.svg";
 
 export default function Index() {
   const [pages, setPages] = useState<LandingPage[]>([]);
@@ -18,7 +18,7 @@ export default function Index() {
       <header className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={leaLogo} alt="LEA" className="h-8 w-auto" />
+            <img src={helleLogo} alt="Helle" className="h-7 w-auto" />
             <span className="text-sm text-muted-foreground hidden sm:inline">Landingpages</span>
           </div>
           <Link to="/admin" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
@@ -30,7 +30,7 @@ export default function Index() {
       <main className="mx-auto max-w-6xl px-6 py-12">
         <div className="mb-10">
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">Alle landingpages</h1>
-          <p className="mt-3 text-lg text-muted-foreground">Oversigt over alle samarbejdspartneres landing pages hos LEA Forsikring.</p>
+          <p className="mt-3 text-lg text-muted-foreground">Oversigt over alle samarbejdspartneres landing pages hos Helle Forsikring.</p>
         </div>
 
         {loading ? (

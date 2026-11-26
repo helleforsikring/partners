@@ -9,23 +9,23 @@ import { PageProvider } from "@/lib/page-context";
 import { LandingPageView } from "@/components/site/LandingPageView";
 
 const DEFAULT_PRODUCTS: Product[] = [
-  { key: "indbo", label: "Indboforsikring", calculator_url: "https://demo.leaforsikring.dk/forsikring/indbo/beregner", input_type: "text", input_label: "Søg din adresse", input_placeholder: "F.eks. Strandgade 12, 1401 København K", input_suffix: "", options: [] },
-  { key: "husleje", label: "Huslejeforsikring", calculator_url: "https://demo.leaforsikring.dk/forsikring/husleje/beregner", input_type: "number", input_label: "Månedlig husleje", input_placeholder: "F.eks. 8500", input_suffix: "kr./md.", options: [] },
-  { key: "ulykke", label: "Ulykkesforsikring", calculator_url: "https://demo.leaforsikring.dk/forsikring/ulykke/beregner", input_type: "select", input_label: "Vælg din beskæftigelse", input_placeholder: "Vælg beskæftigelse", input_suffix: "", options: ["Lønmodtager","Selvstændig","Studerende","Pensionist","Arbejdssøgende","Andet"] },
+  { key: "indbo", label: "Indboforsikring", calculator_url: "https://www.helleforsikring.dk/forsikring/indbo/beregn", input_type: "text", input_label: "Søg din adresse", input_placeholder: "F.eks. Strandgade 12, 1401 København K", input_suffix: "", options: [] },
+  { key: "husleje", label: "Huslejeforsikring", calculator_url: "https://www.helleforsikring.dk/forsikring/husleje/beregn", input_type: "number", input_label: "Månedlig husleje", input_placeholder: "F.eks. 8500", input_suffix: "kr./md.", options: [] },
+  { key: "ulykke", label: "Ulykkesforsikring", calculator_url: "https://www.helleforsikring.dk/forsikring/ulykke/beregn", input_type: "select", input_label: "Vælg din beskæftigelse", input_placeholder: "Vælg beskæftigelse", input_suffix: "", options: ["Lønmodtager","Selvstændig","Studerende","Pensionist","Arbejdssøgende","Andet"] },
 ];
 
 const NEW_DEFAULTS = (slug: string, name: string): LandingPage => ({
   id: "",
   slug,
   name,
-  badge_text: `Et samarbejde mellem ${name} og LEA Forsikring`,
+  badge_text: `Et samarbejde mellem ${name} og Helle Forsikring`,
   hero_highlight: "skræddersyet",
   accent_color: "#3994BA",
   accent_hover_color: "#2d7a99",
-  badge_bg_color: "#341132",
+  badge_bg_color: "#321134",
   logo_url: null,
-  meta_title: `${name} × LEA Forsikring — Forsikringsfordele for dig som lejer`,
-  meta_description: `Som lejer hos ${name} har du adgang til specielt tilrettelagte forsikringer fra LEA Forsikring.`,
+  meta_title: `${name} × Helle Forsikring — Forsikringsfordele for dig som lejer`,
+  meta_description: `Som lejer hos ${name} har du adgang til specielt tilrettelagte forsikringer fra Helle Forsikring.`,
   is_visible: true,
   deleted_at: null,
   products: DEFAULT_PRODUCTS,
