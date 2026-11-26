@@ -10,7 +10,7 @@ Co-brandede landingssider for partnere (udlejere/administratorer) med admin-edit
 ## Sider
 - `/` – oversigt
 - `/p/<slug>` – partnerens landingsside
-- `/admin` – admin (kræver login som info@leaforsikring.dk)
+- `/admin` – admin (kræver login som info@helleforsikring.dk)
 
 ## Lokalt
 ```

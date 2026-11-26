@@ -53,7 +53,7 @@ begin new.updated_at = now(); return new; end; $$;
 
 create or replace function public.is_admin()
 returns boolean language sql stable security definer set search_path = public as $$
-  select coalesce((auth.jwt() ->> 'email') = 'info@leaforsikring.dk', false)
+  select coalesce((auth.jwt() ->> 'email') = 'info@helleforsikring.dk', false)
 $$;
 
 create trigger lp_touch before update on public.landing_pages for each row execute function public.touch_updated_at();

@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("info@leaforsikring.dk");
+  const [email, setEmail] = useState("info@helleforsikring.dk");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
