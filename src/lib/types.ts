@@ -66,7 +66,7 @@ export const CONTENT_DEFAULTS: Record<string, string> = {
   "products.cardCta": "Læs mere",
   "products.chip": "Køb online",
   "products.indbo.image": "https://cdn.sanity.io/images/s87ydv4j/production/f27e0e912479e472fb3ae0d2cd87acf8ae2e6238-1344x896.jpg?w=700&h=420&fit=crop&q=80&auto=format",
-  "products.husleje.image": "https://cdn.sanity.io/images/s87ydv4j/production/5c18b7ddfbef26172d210c833521237eb50c2a4b-1333x922.jpg?w=700&h=420&fit=crop&q=80&auto=format",
+  "products.husleje.image": "https://cdn.sanity.io/images/s87ydv4j/production/6f61095ddf32d2986a3084b6f070e3b077a5cd1d-1536x1024.png?w=700&h=420&fit=crop&q=80&auto=format",
   "products.ulykke.image": "https://cdn.sanity.io/images/s87ydv4j/production/dad925df8248baeb95436096468d439b3eb4a20e-1024x1024.jpg?w=700&h=420&fit=crop&q=80&auto=format",
   "products.indbo.discount": "",
   "products.husleje.discount": "",
