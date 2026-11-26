@@ -45,35 +45,35 @@ function Hero() {
   const imageAlt = useText("hero.imageAlt");
   const usps: [string, string][] = [["usp.1", "pris"], ["usp.2", "digitalt-med-helle"], ["usp.3", "raadgivning"]];
   return (
-    <section className="pb-16 pt-10 md:pb-24 md:pt-14">
-      <div className={`${SECTION} grid items-center gap-12 lg:grid-cols-2 lg:gap-16`}>
-        <div>
+    <section className="pb-14 pt-10 md:pt-12">
+      <div className={`${SECTION} grid items-center gap-12 lg:grid-cols-2 lg:gap-0`}>
+        <div className="flex max-w-[620px] flex-col items-start gap-7">
           <span className="inline-flex rounded-full bg-helle-pink px-3.5 py-1.5 text-[13px] font-medium leading-4">
             {page.badge_text}
           </span>
-          <h1 className="mt-5 text-[2.5rem] font-bold leading-[2.875rem] tracking-[-0.02em] md:text-[3.75rem] md:leading-[4rem]">
+          <h1 className="text-[2.5rem] font-bold leading-[2.875rem] tracking-[-0.02em] md:text-[3.75rem] md:leading-[4rem]">
             <T k="hero.titleStart" />{" "}
             <span style={{ color: page.accent_color }}>{page.hero_highlight}</span>{" "}
             <T k="hero.titleEnd" />
           </h1>
-          <p className="mt-6 max-w-[34rem] text-lg leading-7 md:text-[1.3125rem] md:leading-8">
+          <p className="text-lg leading-7 md:text-[1.3125rem] md:leading-8">
             <T k="hero.subtitle" />
           </p>
-          <ul className="mt-8 grid max-w-[28rem] grid-cols-2 gap-x-6 gap-y-4">
+          <ul className="grid w-full grid-cols-2 gap-x-9 gap-y-3 sm:grid-cols-3">
             {usps.map(([k, icon]) => (
-              <li key={k} className="flex items-center gap-3 text-[15px] leading-[1.375rem]">
+              <li key={k} className="flex items-center gap-3 text-base font-medium leading-[1.35]">
                 <img src={helleIcon(icon)} alt="" className="h-12 w-12 shrink-0 mix-blend-multiply" />
-                <span className="max-w-[7rem]"><T k={k} /></span>
+                <span className="max-w-[112px]"><T k={k} /></span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[30rem] lg:mr-0">
+        <div className="relative mx-auto w-full max-w-[471px] lg:mr-0">
           {image && (
             <img src={image} alt={imageAlt} className="aspect-[471/528] w-full rounded-[2rem] object-cover" />
           )}
-          <div className={image ? "relative -mt-24 px-4 sm:px-0 lg:absolute lg:-left-10 lg:bottom-0 lg:mt-0 lg:w-[26rem]" : ""}>
+          <div className={image ? "relative -mt-24 px-4 sm:px-0 lg:absolute lg:-bottom-1 lg:-left-20 lg:mt-0 lg:w-[420px]" : ""}>
             <ProductSelector />
           </div>
         </div>
@@ -108,13 +108,13 @@ function ProductSelector() {
   };
 
   return (
-    <div id="beregn" ref={ref} className="relative rounded-[2rem] bg-white p-6 shadow-[0_1rem_2.5rem_0_rgba(50,17,52,.14)]">
-      <p className="mb-4 text-[1.375rem] font-semibold leading-7 tracking-[-0.005em]"><T k="selector.label" /></p>
+    <div id="beregn" ref={ref} className="relative rounded-[2rem] bg-white p-6 shadow-[0_1rem_2.5rem_0_rgba(50,17,52,.14)] md:p-7">
+      <p className="mb-4 text-[1.625rem] font-bold leading-8 tracking-[-0.01em] md:text-[1.875rem] md:leading-9"><T k="selector.label" /></p>
       <div className="relative">
       <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}
         className="flex h-14 w-full items-center justify-between rounded-xl border border-helle-blomme bg-white px-4 text-left text-lg focus:outline-none focus-visible:shadow-[0_0_0_.25rem_#F4B0F9]">
         <T k="selector.placeholder" />
-        <ChevronDown className={`h-5 w-5 transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown className={`h-[22px] w-[22px] transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
         <ul role="listbox"
