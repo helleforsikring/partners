@@ -1,15 +1,25 @@
-import { useState } from "react";
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import { ArrowRight, ChevronDown, ChevronRight, Menu, Phone, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import helleLogo from "@/assets/helle-logo-blomme.svg";
 import { T, useText, usePage } from "@/lib/page-context";
 import { HELLE } from "./helle";
-import { ProductOptions, useToggle } from "./ProductOptions";
+import { ProductOptions, useDismiss, useToggle } from "./ProductOptions";
 
 const NAV = [
-  { key: "header.nav.forsikringer", href: `${HELLE}/forsikring` },
   { key: "header.nav.kontakt", href: `${HELLE}/kontakt` },
   { key: "header.nav.omLea", href: `${HELLE}/om-helle` },
+];
+
+const FOCUS = "outline-none focus-visible:shadow-[0_0_0_.125rem_#fff,0_0_0_.25rem_#321134]";
+
+const INSURANCES: [string, string][] = [
+  ["Indboforsikring", "/forsikring/indbo"],
+  ["Ulykkesforsikring", "/forsikring/ulykke"],
+  ["Huslejeforsikring", "/forsikring/husleje"],
+  ["Ejerudgift-Vedligeholdelsesforsikring", "/forsikring/ejerudgift"],
+  ["Ejerskifteforsikring", "/forsikring/ejerskifte"],
+  ["Udvidet Garanti til Bil", "/forsikring/garanti-bil"],
 ];
 
 function Banner() {
@@ -29,15 +39,19 @@ function Banner() {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [mega, setMega] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const closeMega = useCallback(() => setMega(false), []);
+  useDismiss(menuRef, mega, closeMega);
   const { page } = usePage();
 
   return (
     <header className="sticky top-0 z-30">
       <Banner />
-      <div className="px-4 pt-4 md:px-10">
-        <div className="w-full rounded-[22px] bg-white px-5 py-3 shadow-[0_.5rem_2rem_0_rgba(50,17,52,.08)] md:px-10 md:py-0">
-          <div className="flex items-center justify-between gap-6 md:h-[84px]">
-            <Link to={`/p/${page.slug}`} className="flex min-w-0 items-center gap-3 md:gap-5" aria-label={`Helle × ${page.name} — forside`}>
+      <div className="px-4 pt-4 xl:px-8">
+        <div ref={menuRef} className="relative mx-auto w-full max-w-[86rem] rounded-[22px] bg-white px-5 py-3 shadow-[0_.5rem_2rem_0_rgba(50,17,52,.08)] md:px-10 md:py-0">
+          <div className="flex items-center gap-6 md:h-[84px]">
+            <Link to={`/p/${page.slug}`} className={`flex min-w-0 shrink-0 items-center gap-3 rounded-xl md:gap-5 ${FOCUS}`} aria-label={`Helle × ${page.name} — forside`}>
               <img src={helleLogo} alt="Helle" className="h-8 w-auto shrink-0 md:h-[45px]" />
               {page.logo_url && (
                 <>
@@ -47,28 +61,35 @@ export function Header() {
               )}
             </Link>
 
-            <nav className="hidden items-center gap-8 lg:flex">
+            <nav className="hidden min-w-0 flex-1 items-center justify-center gap-8 lg:flex">
+              <button type="button" onClick={() => setMega(!mega)} aria-expanded={mega}
+                className={`inline-flex h-11 items-center gap-1 rounded-xl px-1 text-[17px] text-helle-blomme underline-offset-[6px] hover:underline ${mega ? "underline" : ""} ${FOCUS}`}>
+                <T k="header.nav.forsikringer" />
+                <ChevronDown className={`h-4 w-4 transition-transform ${mega ? "rotate-180" : ""}`} />
+              </button>
               {NAV.map((n) => (
                 <a key={n.key} href={n.href} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center px-1 text-[17px] text-helle-blomme transition hover:underline underline-offset-4">
+                  className={`inline-flex h-11 items-center rounded-xl px-1 text-[17px] text-helle-blomme transition hover:underline underline-offset-[6px] ${FOCUS}`}>
                   <T k={n.key} />
                 </a>
               ))}
             </nav>
 
-            <div className="hidden items-center gap-5 md:flex">
+            <div className="ml-auto hidden shrink-0 items-center gap-5 md:flex">
               <a href={`${HELLE}/mit-helle`} target="_blank" rel="noopener noreferrer"
-                className="inline-flex h-[50px] w-[110px] items-center justify-center rounded-full text-base font-medium text-helle-blomme ring-2 ring-inset ring-helle-pink transition hover:bg-helle-lavendel">
+                className={`inline-flex h-[50px] w-[110px] items-center justify-center rounded-full text-base font-medium text-helle-blomme ring-2 ring-inset ring-helle-pink transition hover:bg-helle-lavendel ${FOCUS}`}>
                 <T k="header.mitHelle" />
               </a>
               <CalcButton />
             </div>
 
             <button aria-label="Menu" onClick={() => setOpen(!open)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-helle-blomme md:hidden">
+              className="ml-auto flex h-10 w-10 items-center justify-center rounded-full text-helle-blomme md:hidden">
               {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
+
+          {mega && <MegaMenu onClose={() => setMega(false)} />}
 
           {open && (
             <div className="mt-4 flex flex-col gap-3 border-t border-helle-linje pt-4 md:hidden">
@@ -86,6 +107,7 @@ export function Header() {
           )}
         </div>
       </div>
+      {mega && <div className="fixed inset-0 -z-10 bg-helle-blomme/25" aria-hidden="true" />}
     </header>
   );
 }
@@ -95,11 +117,48 @@ function CalcButton() {
   return (
     <div ref={ref} className="relative">
       <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}
-        className="inline-flex h-[52px] items-center gap-2.5 rounded-full bg-helle-blomme px-[26px] text-[17px] font-medium text-white transition hover:opacity-90">
+        className={`inline-flex h-[52px] items-center gap-2.5 rounded-full bg-helle-blomme px-[26px] text-[17px] font-medium text-white transition hover:opacity-90 ${FOCUS}`}>
         <T k="header.beregn" />
         <ChevronDown className={`h-5 w-5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && <ProductOptions onPicked={() => setOpen(false)} className="absolute right-0 top-full z-40 mt-3 w-[22rem]" />}
+    </div>
+  );
+}
+
+function MegaMenu({ onClose }: { onClose: () => void }) {
+  const phone = useText("footer.phone");
+  const [calc, setCalc] = useState(false);
+  return (
+    <div className="absolute left-0 right-0 top-full z-40 mt-3 hidden gap-6 rounded-[1.5rem] bg-white p-6 shadow-[0_1rem_2.5rem_0_rgba(50,17,52,.14)] lg:grid lg:grid-cols-[1fr_18rem]">
+      <div>
+        <p className="mb-4 text-[13px] font-medium uppercase tracking-[0.06em] text-helle-daempet">Forsikringer</p>
+        <ul className="grid grid-cols-2 gap-3">
+          {INSURANCES.map(([label, href]) => (
+            <li key={href}>
+              <a href={`${HELLE}${href}`} target="_blank" rel="noopener noreferrer" onClick={onClose}
+                className={`flex items-center justify-between rounded-[0.875rem] bg-helle-creme px-6 py-4 text-base text-helle-blomme transition hover:bg-helle-lavendel ${FOCUS}`}>
+                {label} <ChevronRight className="h-4 w-4 shrink-0" />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href={`${HELLE}/forsikring`} target="_blank" rel="noopener noreferrer"
+          className={`mt-5 inline-flex items-center gap-2 rounded-lg text-[15px] text-helle-blomme hover:underline underline-offset-4 ${FOCUS}`}>
+          Alle forsikringer <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+      <div className="flex flex-col gap-4 rounded-[1.25rem] bg-helle-lavendel p-6">
+        <p className="text-[1.375rem] font-semibold leading-7"><T k="header.beregn" /></p>
+        <button type="button" onClick={() => setCalc(!calc)} aria-expanded={calc}
+          className={`inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-helle-blomme px-6 text-base font-medium text-white hover:opacity-90 ${FOCUS}`}>
+          <T k="header.beregn" /> <ChevronDown className={`h-4 w-4 transition-transform ${calc ? "rotate-180" : ""}`} />
+        </button>
+        {calc && <ProductOptions onPicked={onClose} className="shadow-none" />}
+        <a href={`tel:${phone.replace(/\s+/g, "")}`} className={`inline-flex items-center gap-2 rounded-lg text-[15px] text-helle-blomme hover:underline ${FOCUS}`}>
+          <Phone className="h-4 w-4" /> Ring {phone.replace(/^\+45\s*/, "")}
+        </a>
+      </div>
     </div>
   );
 }
