@@ -48,7 +48,7 @@ export function Header() {
               {page.logo_url && (
                 <>
                   <X className="h-3.5 w-3.5 shrink-0 text-helle-blomme md:h-4 md:w-4" strokeWidth={3} aria-hidden="true" />
-                  <img src={page.logo_url} alt={page.name} className="h-7 w-auto max-w-[120px] object-contain md:h-10 md:max-w-[160px]" />
+                  <img src={page.logo_url} alt={page.name} className="h-7 w-auto max-w-[150px] object-contain md:h-10 md:max-w-[240px]" />
                 </>
               )}
             </Link>
