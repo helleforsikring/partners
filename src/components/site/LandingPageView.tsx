@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, ChevronDown, ChevronRight } from "lucide-react";
+import { useEffect } from "react";
+import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { HELLE, helleIcon, productIcon } from "./helle";
+import { HELLE, helleIcon } from "./helle";
+import { ProductOptions, useToggle } from "./ProductOptions";
 import { T, useText, usePage } from "@/lib/page-context";
-import { directProductDestination, openProductDestination } from "@/lib/product-selection";
 
 const SECTION = "mx-auto w-full max-w-[77.5rem] px-5 md:px-10";
 
@@ -83,54 +83,17 @@ function Hero() {
 }
 
 function ProductSelector() {
-  const { page, onEditKey } = usePage();
-  const products = page.products ?? [];
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
-    document.addEventListener("mousedown", onClick);
-    document.addEventListener("keydown", onKey);
-    return () => { document.removeEventListener("mousedown", onClick); document.removeEventListener("keydown", onKey); };
-  }, []);
-
-  const go = (key: string, url: string) => {
-    setOpen(false);
-    const destination = directProductDestination(page.slug, key) ?? url;
-    if (!destination || destination === "https://") return;
-    // I admin-forhåndsvisningen åbnes beregneren i en ny fane
-    if (onEditKey) openProductDestination(destination);
-    else window.location.assign(destination);
-  };
-
+  const { open, setOpen, ref } = useToggle();
   return (
-    <div id="beregn" ref={ref} className="relative rounded-[2rem] bg-white p-6 shadow-[0_1rem_2.5rem_0_rgba(50,17,52,.14)] md:p-7">
+    <div id="beregn" ref={ref} className="relative z-20 rounded-[2rem] bg-white p-6 shadow-[0_1rem_2.5rem_0_rgba(50,17,52,.14)] md:p-7">
       <p className="mb-4 text-[1.625rem] font-bold leading-8 tracking-[-0.01em] md:text-[1.875rem] md:leading-9"><T k="selector.label" /></p>
       <div className="relative">
-      <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}
-        className="flex h-14 w-full items-center justify-between rounded-xl border border-helle-blomme bg-white px-4 text-left text-lg focus:outline-none focus-visible:shadow-[0_0_0_.25rem_#F4B0F9]">
-        <T k="selector.placeholder" />
-        <ChevronDown className={`h-[22px] w-[22px] transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
-      {open && (
-        <ul role="listbox"
-          className="absolute bottom-full left-0 right-0 z-20 mb-2 flex flex-col gap-2 rounded-[1.25rem] bg-white p-2 shadow-[0_1rem_2.5rem_0_rgba(50,17,52,.14)]">
-          {products.map((p) => (
-            <li key={p.key}>
-              <button type="button" role="option" aria-selected={false} onClick={() => go(p.key, p.calculator_url)}
-                className="flex w-full items-center gap-3 rounded-[0.875rem] bg-helle-creme px-3 py-2 text-left text-lg leading-6 transition hover:bg-helle-lavendel hover:shadow-[inset_0_0_0_2px_#321134]">
-                <img src={productIcon(p.key, p.calculator_url)} alt="" className="h-10 w-10 shrink-0 mix-blend-multiply" />
-                <span className="flex-1">{p.label}</span>
-                <ChevronRight className="h-4 w-4 shrink-0" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+        <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}
+          className="flex h-14 w-full items-center justify-between rounded-xl border border-helle-blomme bg-white px-4 text-left text-lg focus:outline-none focus-visible:shadow-[0_0_0_.25rem_#F4B0F9]">
+          <T k="selector.placeholder" />
+          <ChevronDown className={`h-[22px] w-[22px] transition-transform ${open ? "rotate-180" : ""}`} />
+        </button>
+        {open && <ProductOptions onPicked={() => setOpen(false)} className="absolute left-0 right-0 top-full z-30 mt-2" />}
       </div>
     </div>
   );

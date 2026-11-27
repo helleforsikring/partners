@@ -4,19 +4,13 @@ import { Link } from "react-router-dom";
 import helleLogo from "@/assets/helle-logo-blomme.svg";
 import { T, useText, usePage } from "@/lib/page-context";
 import { HELLE } from "./helle";
+import { ProductOptions, useToggle } from "./ProductOptions";
 
 const NAV = [
   { key: "header.nav.forsikringer", href: `${HELLE}/forsikring` },
   { key: "header.nav.kontakt", href: `${HELLE}/kontakt` },
   { key: "header.nav.omLea", href: `${HELLE}/om-helle` },
 ];
-
-export function scrollToCalculator() {
-  const el = document.getElementById("beregn");
-  if (!el) return;
-  el.scrollIntoView({ behavior: "smooth", block: "center" });
-  setTimeout(() => el.querySelector<HTMLButtonElement>("button")?.focus(), 400);
-}
 
 function Banner() {
   const url = useText("banner.url");
@@ -67,11 +61,7 @@ export function Header() {
                 className="inline-flex h-[50px] w-[110px] items-center justify-center rounded-full text-base font-medium text-helle-blomme ring-2 ring-inset ring-helle-pink transition hover:bg-helle-lavendel">
                 <T k="header.mitHelle" />
               </a>
-              <button type="button" onClick={scrollToCalculator}
-                className="inline-flex h-[52px] items-center gap-2.5 rounded-full bg-helle-blomme px-[26px] text-[17px] font-medium text-white transition hover:opacity-90">
-                <T k="header.beregn" />
-                <ChevronDown className="h-5 w-5" />
-              </button>
+              <CalcButton />
             </div>
 
             <button aria-label="Menu" onClick={() => setOpen(!open)}
@@ -90,14 +80,26 @@ export function Header() {
               <a href={`${HELLE}/mit-helle`} target="_blank" rel="noopener noreferrer" className="text-base text-helle-blomme">
                 <T k="header.mitHelle" />
               </a>
-              <button type="button" onClick={() => { setOpen(false); scrollToCalculator(); }}
-                className="rounded-full bg-helle-blomme px-5 py-3 text-center text-base font-medium text-white">
-                <T k="header.beregn" />
-              </button>
+              <p className="pt-2 text-base font-medium text-helle-blomme"><T k="header.beregn" /></p>
+              <ProductOptions onPicked={() => setOpen(false)} className="shadow-none ring-1 ring-helle-linje" />
             </div>
           )}
         </div>
       </div>
     </header>
+  );
+}
+
+function CalcButton() {
+  const { open, setOpen, ref } = useToggle();
+  return (
+    <div ref={ref} className="relative">
+      <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}
+        className="inline-flex h-[52px] items-center gap-2.5 rounded-full bg-helle-blomme px-[26px] text-[17px] font-medium text-white transition hover:opacity-90">
+        <T k="header.beregn" />
+        <ChevronDown className={`h-5 w-5 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && <ProductOptions onPicked={() => setOpen(false)} className="absolute right-0 top-full z-40 mt-3 w-[22rem]" />}
+    </div>
   );
 }
